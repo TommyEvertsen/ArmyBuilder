@@ -2,15 +2,17 @@ package armyBuilder.UnitsArmyBuilder;
 
 public abstract class Unit {
 
-    private String type;
-    private int hp;
-    private int strenght;
-    private int agility;
-    private int defence;
-    private String[] wekanesses;
-    private String[] traits;
-    private String[] resistances;
-    private int cost;
+    public String type;
+    public int hp;
+    public int strenght;
+    public int agility;
+    public int defence;
+    public String[] wekanesses;
+    public String[] traits;
+    public String[] resistances;
+    public int cost;
+    public boolean firstStrike;
+    private int range;
    
 
     public String getType() {
@@ -72,6 +74,23 @@ public abstract class Unit {
     public void setCost(int cost) {
         this.cost = cost;
     }
+
+    public boolean getFirstStrike(){
+        return firstStrike;
+    }
+
+    public void setFirstStrike(boolean firstStrike){
+        this.firstStrike = firstStrike;
+    }
+
+    public int getRange(){
+        return range;
+    }
+
+    public void setRange(int range){
+        this.range = range;
+    }
+
 
     // Cusom methods
     public void attack(Unit target) {

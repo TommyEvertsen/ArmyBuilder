@@ -15,9 +15,10 @@ public class RatClanMan extends Unit{
     private int defence = 2;
     private int range = 1;
     private int cost = 100;
-    private final String[] wekanesses = {Weaknesses.FIRE.name(), Weaknesses.LIGHTNING.name()};
-    private final String[] resistances = {Resistances.POISON.name()};
-    private final String[] traits = {Traits.DARKNESS.name(), Traits.STEALTH.name()};
+    private boolean firstStrike = false;
+    private  String[] wekanesses = {Weaknesses.FIRE.name(), Weaknesses.LIGHTNING.name()};
+    private  String[] resistances = {Resistances.POISON.name()};
+    private  String[] traits = {Traits.DARKNESS.name(), Traits.STEALTH.name()};
 
     public RatClanMan() {
     }
@@ -32,6 +33,116 @@ public class RatClanMan extends Unit{
         this.range = range;
     }
 
+    @Override
+    public String getType() {
+        return type;
+    }
+
+    @Override
+    public int getHp() {
+        return hp;
+    }
+
+    @Override
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    @Override
+    public int getStrenght() {
+        return strenght;
+    }
+
+    @Override
+    public int setStrenght(int strenght) {
+      return this.strenght = strenght;
+    }
+
+    @Override
+    public int getAgility() {
+        return agility;
+    }
+
+    @Override
+    public void setAgility(int agility) {
+        this.agility = agility;
+    }
+
+    @Override
+    public int getDefence() {
+        return defence;
+    }
+
+    @Override
+    public void setDefence(int defence) {
+        this.defence = defence;
+    }
+
+    @Override
+    public String[] getWekanesses() {
+        return wekanesses;
+    }
+    
+    @Override
+    public void setWekanesses(String[] wekanesses) {
+        this.wekanesses = wekanesses;
+    }
+    
+    @Override
+    public String[] getTraits() {
+        return traits;
+    }
+
+    @Override
+    public void setTraits(String[] traits) {
+        this.traits = traits;
+    }
+
+@Override
+    public int getCost() {
+        return cost;
+    }
+
+    @Override
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+
+    @Override
+    public boolean getFirstStrike(){
+        return firstStrike;
+    }
+
+    @Override
+    public void setFirstStrike(boolean firstStrike){
+        this.firstStrike = firstStrike;
+    }
+
+    @Override
+    public int getRange(){
+        return range;
+    }
+    @Override
+    public void setRange(int range){
+        this.range = range;
+    }
+
+    // Cusom methods
+    @Override
+    public void attack(Unit target) {
+        int damage = this.strenght - target.getDefence();
+        if (damage > 0) {
+            target.setHp(target.getHp() - damage);
+        }
+    }
+
+    @Override
+    public void defend(int damage) {
+        int actualDamage = damage - this.defence;
+        if (actualDamage > 0) {
+            this.hp -= actualDamage;
+        }
+    }
 
     @Override
     public void getStatus() {
