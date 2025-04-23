@@ -3,6 +3,7 @@ package armyBuilder.UnitsArmyBuilder;
 public abstract class Unit {
 
     public String type;
+    private String name;
     public int hp;
     public int strenght;
     public int agility;
@@ -89,6 +90,14 @@ public abstract class Unit {
 
     public void setRange(int range){
         this.range = range;
+    }
+
+    public String getName(){
+        return name; 
+    }
+
+    public void setName(String name){
+        this.name = name;
     }
 
 

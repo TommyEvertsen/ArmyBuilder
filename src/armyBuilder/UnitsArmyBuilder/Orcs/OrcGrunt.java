@@ -9,7 +9,8 @@ import armyBuilder.UnitsArmyBuilder.Unit;
 
 public class OrcGrunt extends Unit {
 
-    private  String type = Type.ORC.name();
+    private String type = Type.ORC.name();
+    private String name = "Orc Grunt";
     private int hp = 16;
     private int strenght = 7;
     private int agility = 2;
@@ -91,7 +92,7 @@ public class OrcGrunt extends Unit {
         this.traits = traits;
     }
 
-@Override
+    @Override
     public int getCost() {
         return cost;
     }
@@ -118,6 +119,16 @@ public class OrcGrunt extends Unit {
     @Override
     public void setRange(int range){
         this.range = range;
+    }
+
+    @Override
+    public String getName(){
+        return name; 
+    }
+
+    @Override
+    public void setName(String name){
+        this.name = name;
     }
 
 
@@ -150,6 +161,8 @@ public class OrcGrunt extends Unit {
         System.out.println("Wekanesses: " + String.join(", ", this.weaknesses));
         System.out.println("Traits: " + String.join(", ", this.traits));
         System.out.println("Resistances: " + String.join(", ", this.resistances));
+        System.out.println("First strike" + firstStrike);
+        
     }
 
 }
