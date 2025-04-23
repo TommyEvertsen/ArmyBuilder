@@ -5,10 +5,12 @@ import armyBuilder.EnumArmyBuilder.Traits;
 import armyBuilder.EnumArmyBuilder.Type;
 import armyBuilder.EnumArmyBuilder.Weaknesses;
 import armyBuilder.UnitsArmyBuilder.Unit;
+import java.util.Random;
 
 public class RatClanMan extends Unit{
 
     private String type = Type.RAT.name();
+    private String name = "Ratclan man";
     private int hp = 10;
     private int strenght = 5;
     private int agility = 3;
@@ -19,6 +21,8 @@ public class RatClanMan extends Unit{
     private  String[] wekanesses = {Weaknesses.FIRE.name(), Weaknesses.LIGHTNING.name()};
     private  String[] resistances = {Resistances.POISON.name()};
     private  String[] traits = {Traits.DARKNESS.name(), Traits.STEALTH.name()};
+    Random rand = new Random(); 
+
 
     public RatClanMan() {
     }
@@ -98,7 +102,7 @@ public class RatClanMan extends Unit{
         this.traits = traits;
     }
 
-@Override
+    @Override
     public int getCost() {
         return cost;
     }
@@ -127,10 +131,20 @@ public class RatClanMan extends Unit{
         this.range = range;
     }
 
+    @Override
+    public String getName(){
+        return name; 
+    }
+
+    @Override
+    public void setName(String name){
+        this.name = name;
+    }
+
     // Cusom methods
     @Override
     public void attack(Unit target) {
-        int damage = this.strenght - target.getDefence();
+        int damage = this.strenght  - target.getDefence();
         if (damage > 0) {
             target.setHp(target.getHp() - damage);
         }
@@ -156,6 +170,7 @@ public class RatClanMan extends Unit{
         System.out.println("Wekanesses: " + String.join(", ", this.wekanesses));
         System.out.println("Traits: " + String.join(", ", this.traits));
         System.out.println("Resistances: " + String.join(", ", this.resistances));
+        System.out.println("First strike" + firstStrike);
     }
 
 
