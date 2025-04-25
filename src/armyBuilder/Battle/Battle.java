@@ -1,6 +1,7 @@
 package armyBuilder.Battle;
 
 import armyBuilder.UnitsArmyBuilder.Unit;
+import java.util.Random;
 
 public class Battle {
 
@@ -41,40 +42,55 @@ public class Battle {
     }
 
     public void attack(Unit attacker, Unit target) {
-        int damage = attacker.getStrenght() - target.getDefence(); 
-        if (damage > 0) {
-            target.setHp(target.getHp() - damage);
-            System.out.println(attacker.getName() + " deals " + damage + " damage to " + target.getName());
+        if (chanceToHit(attacker, target)) { 
+            int damage = attacker.getStrenght() - target.getDefence();
+            if (damage > 0) {
+                target.setHp(target.getHp() - damage);
+                System.out.println(attacker.getName() + " deals " + damage + " damage to " + target.getName());
+            } else {
+                System.out.println(attacker.getName() + " couldn't penetrate " + target.getName() + "'s defense.");
+            }
         } else {
-            System.out.println(attacker.getName() + " couldn't penetrate " + target.getName() + "'s defense.");
+            System.out.println(target.getName() + " dodged the attack! No damage taken.");
+        }
+    }
+
+    public boolean chanceToHit(Unit attacker, Unit target) {
+        int dodgeChance = Math.max(0, (target.getAgility() * 10) / attacker.getAgility()); 
+        Random rand = new Random();
+        int hit = rand.nextInt(101); 
+        if (hit < dodgeChance) {
+            return false; 
+        } else {
+            return true; 
         }
     }
 
     public void startBattle(Unit unit1, Unit unit2) {
-        while (unit1.getHp() >= 0 && unit2.getHp() >= 0) { 
+        while (unit1.getHp() > 0 && unit2.getHp() >= 0) { 
             if (unit1.getFirstStrike()) {
                 System.out.println(unit1.getName() + " Attacks");
                 attack(unit1, unit2);
-                if (unit2.getHp() <= 0) { 
+                if (unit2.getHp() <= 0) {
                     System.out.println(unit2.getName() + " Died");
                     break;
                 }
                 System.out.println(unit2.getName() + " Attacks");
                 attack(unit2, unit1);
-                if (unit1.getHp() <= 0) { 
+                if (unit1.getHp() <= 0) {
                     System.out.println(unit1.getName() + " Died");
                     break;
                 }
             } else {
                 System.out.println(unit2.getName() + " Attacks");
                 attack(unit2, unit1);
-                if (unit1.getHp() <= 0) { 
+                if (unit1.getHp() <= 0) {
                     System.out.println(unit1.getName() + " Died");
                     break;
                 }
                 System.out.println(unit1.getName() + " Attacks");
                 attack(unit1, unit2);
-                if (unit2.getHp() <= 0) { 
+                if (unit2.getHp() <= 0) {
                     System.out.println(unit2.getName() + " Died");
                     break;
                 }

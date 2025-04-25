@@ -11,8 +11,8 @@ public class OrcGrunt extends Unit {
 
     private String type = Type.ORC.name();
     private String name = "Orc Grunt";
-    private int hp = 16;
-    private int strenght = 7;
+    private int hp = 12;
+    private int strenght = 6;
     private int agility = 2;
     private int defence = 3;
     private int range = 1;
